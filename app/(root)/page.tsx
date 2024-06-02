@@ -1,10 +1,6 @@
-/**
- * Represents the Home page component.
- * This component renders the Home page content.
- */
+import { getUserSession } from "@/lib/session";
 
-const Home = () => {
-  return <div>Home</div>;
-};
-
-export default Home;
+export default async function Home() {
+  const user = await getUserSession();
+  return <main className="">{JSON.stringify(user)}</main>;
+}
