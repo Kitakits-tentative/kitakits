@@ -1,113 +1,46 @@
-Sure, here’s a code version of the README summary for the `lib` folder in a Next.js application, with an emphasis on PostgreSQL database utilities using Prisma:
-
-````markdown
-### `lib` Folder
+```markdown
+### `lib/actions` Folder
 
 The `lib` folder in this Next.js application is used to store utility functions, configuration files, and other shared code that doesn't fit into the typical page or component structure. This helps in organizing reusable code, maintaining a clean project structure, and promoting code reuse.
 
+please organize the actions based on the feature or the entity that it's related to.
+
+for example, if we have a feature called "user", then we can create a folder called "user" inside the /actions folder.
+
+#### exemple of Folder Structure:
+
+- `lib/actions/user`:
+
+  - `fetchUser.ts`: Function to fetch user data from an API.
+  - `updateUser.ts`: Function to update user data.
+  - `deleteUser.ts`: Function to delete a user.
+  - `createUser.ts`: Function to create a new user.
+
+- `lib/actions/post`:
+  - `fetchPosts.ts`: Function to fetch posts from an API.
+  - `createPost.ts`: Function to create a new post.
+  - `updatePost.ts`: Function to update a post.
+  - `deletePost.ts`: Function to delete a post.
+
 #### Common Uses:
 
-1. **Utility Functions**:
+- **PRISMA Call**: Functions to interact with the database using Prisma.
+- **State Management**: Functions to manage the state of the application.
 
-   - Helper functions such as date formatting and string manipulation.
-   - Example: `lib/utils.ts` containing functions like `formatDate()` and `capitalizeFirstLetter()`.
+- **API Calls**: Functions to make API calls to external services.
+- **Utility Functions**: Helper functions that can be reused across the application.
 
-   ```typescript
-   // lib/utils.ts
-   export const formatDate = (date: Date): string => {
-     return date.toISOString().split("T")[0];
-   };
+#### Note:
 
-   export const capitalizeFirstLetter = (string: string): string => {
-     return string.charAt(0).toUpperCase() + string.slice(1);
-   };
-   ```
-````
+- Make sure to keep the functions small, focused, and reusable.
+- Use TypeScript to define the types of the parameters and return values.
+- Add JSDoc comments to describe the purpose of the function, parameters, and return values.
+- Test the functions thoroughly to ensure they work as expected.
 
-2. **Data Fetching**:
+#### Resources:
 
-   - Functions to fetch data from APIs or databases.
-   - Example: `lib/api.ts` containing functions like `fetchUser()`.
-
-   ```typescript
-   // lib/api.ts
-   export const fetchUser = async (userId: string) => {
-     const response = await fetch(`/api/users/${userId}`);
-     if (!response.ok) {
-       throw new Error("Failed to fetch user");
-     }
-     return response.json();
-   };
-   ```
-
-3. **Configuration Files**:
-
-   - Configuration for external libraries or global settings.
-   - Example: `lib/config.ts` with settings like `API_BASE_URL`.
-
-   ```typescript
-   // lib/config.ts
-   export const API_BASE_URL =
-     process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.example.com";
-   ```
-
-4. **Custom Hooks**:
-
-   - Custom React hooks used across multiple components.
-   - Example: `lib/hooks.ts` containing hooks like `useFetch()`.
-
-   ```typescript
-   // lib/hooks.ts
-   import { useState, useEffect } from "react";
-
-   export const useFetch = (url: string) => {
-     const [data, setData] = useState(null);
-     const [error, setError] = useState(null);
-
-     useEffect(() => {
-       const fetchData = async () => {
-         try {
-           const response = await fetch(url);
-           const result = await response.json();
-           setData(result);
-         } catch (error) {
-           setError(error);
-         }
-       };
-       fetchData();
-     }, [url]);
-
-     return { data, error };
-   };
-   ```
-
-5. **Database Utilities (PostgreSQL with Prisma)**:
-
-   - Functions and utilities for interacting with a PostgreSQL database using Prisma.
-   - Example: `lib/prisma.ts` for Prisma client setup and database interactions.
-
-   ```typescript
-   // lib/prisma.ts
-   import { PrismaClient } from "@prisma/client";
-
-   const prisma = new PrismaClient();
-
-   export const getUserById = async (id: string) => {
-     return await prisma.user.findUnique({
-       where: { id },
-     });
-   };
-
-   export const getAllUsers = async () => {
-     return await prisma.user.findMany();
-   };
-
-   export default prisma;
-   ```
-
-By using the `lib` folder, we ensure that our codebase remains clean, maintainable, and easy to understand.
-
-```
-
-This code snippet provides a clear and structured overview of the purpose and usage of the `lib` folder, including examples for utility functions, data fetching, configuration files, custom hooks, and database utilities using PostgreSQL with Prisma.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+- [JSDoc Documentation](https://jsdoc.app/)
+- [Testing Library](https://testing-library.com/docs/intro)
 ```
