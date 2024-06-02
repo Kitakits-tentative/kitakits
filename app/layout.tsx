@@ -1,3 +1,5 @@
+// This file is the root layout of the application. It is used to wrap all pages with a common layout.
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
