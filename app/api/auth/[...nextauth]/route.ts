@@ -1,3 +1,11 @@
+//explain the function of this file:
+// this file is used to manage the user session and authenticate the user
+
+//adddocumentation:
+// This file contains the authentication routes
+// It exports the authentication routes
+// there is a lot of differents providers that can be used to authenticate the user, like google, facebook, github, etc they also can be used to authenticate the user with a email and password
+
 import { prisma } from "@/lib/prisma";
 import { session } from "@/lib/session";
 import { NextAuthOptions } from "next-auth";
@@ -14,12 +22,14 @@ const authOption: NextAuthOptions = {
     strategy: "jwt",
   },
   providers: [
+    // OAuth authentication providers...
     GoogleProvider({
       clientId: GOOGLE_CLIENT_ID,
       clientSecret: GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {
+    // Add the session callback to the callbacks object
     async signIn({ account, profile }) {
       if (!profile?.email) {
         throw new Error("No profile");
@@ -40,6 +50,7 @@ const authOption: NextAuthOptions = {
       return true;
     },
     session,
+    // Add the jwt callback to the callbacks object
     async jwt({ token, user, account, profile }) {
       if (profile) {
         const user = await prisma.user.findUnique({

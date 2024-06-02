@@ -1,8 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// doc:
+// https://www.prisma.io/docs/concepts/components/prisma-client
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// you can use the Prisma Client to access your database in your Node.js application.
+// after you have defined your data model in your Prisma schema, you can use Prisma Client to read and write data in your database.
+// with the command: npx prisma generate
+// and after use the command: npx prisma studio to open the Prisma Studio
+
 
 generator client {
   provider = "prisma-client-js"
